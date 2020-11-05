@@ -8,4 +8,4 @@ The application is developed in C++ using ncurses to display a text-based video.
 
 - If there is packet loss the client drops a channel, if there is no loss the client adds a channel.
 
- Funny video used fro the project: https://youtu.be/qQLjpZ68ygk
+ Funny video used for the project: https://youtu.be/qQLjpZ68ygk
