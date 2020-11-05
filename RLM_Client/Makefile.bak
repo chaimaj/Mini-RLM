@@ -1,0 +1,92 @@
+#
+# Makefile for development of game using Dragonfly
+#
+# 'make' to build executable
+# 'make depend' to generate new dependency list
+# 'make clean' to remove all constructed files
+## Variables of interest:
+#   GAMESRC is the source code files for the game being developed
+#   GAME is the game main() source
+#   DEBUG can be set to -DDEBUG to enable various debug flags
+#
+
+CC= g++
+PLATFORM= -DCYGWIN
+LDFLAGS= -lncurses -lrt -lm
+#INCPATH= include
+#LIBRARY=libdragonfly.a
+ENGSRC= \
+    Frame.cpp\
+    Sprite.cpp\
+    Position.cpp\
+    utility.cpp\
+    
+GAME= main.cpp
+EXECUTABLE= main
+OBJECTS = $(ENGSRC:.cpp=.o)
+	
+#$(LIBRARY): $(OBJECTS) Makefile
+#	ar rcs $(LIBRARY) $(OBJECTS)
+
+all: $(EXECUTABLE) Makefile
+ 
+$(EXECUTABLE):	$(OBJECTS)  $(GAME) $(ENGSRC) 
+	$(CC) $(GAME) $(OBJECTS) -o $@ $(LDFLAGS)
+ 
+.cpp.o:	
+	$(CC) -c $(DEBUG)   $(PLATFORM) $< -o $@
+#debug:	$(CC)	$(CXXFLAGS)	$(OBJECTS)	-o	$@	$(LDFLAGS)
+ 
+clean:
+	rm -rf	$(OBJECTS)	$(EXECUTABLE)	core dragonfly.log Makefile.bak *~
+ 
+depend:	
+	makedepend *.cpp 2> /dev/null
+
+# DO NOT DELETE
+
+Client.o: Client.h /usr/include/curses.h /usr/include/ncurses_dll.h
+Client.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+Client.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
+Client.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
+Client.o: /usr/include/sys/features.h /usr/include/sys/cdefs.h
+Client.o: /usr/include/machine/_default_types.h /usr/include/sys/reent.h
+Client.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+Client.o: /usr/include/sys/lock.h /usr/include/sys/types.h
+Client.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
+Client.o: /usr/include/unctrl.h Position.h Sprite.h Frame.h utility.h
+Client.o: /usr/include/stdlib.h /usr/include/machine/stdlib.h
+Client.o: /usr/include/alloca.h /usr/include/string.h
+Client.o: /usr/include/sys/string.h /usr/include/netdb.h
+Client.o: /usr/include/inttypes.h /usr/include/sys/socket.h
+Client.o: /usr/include/features.h /usr/include/cygwin/socket.h
+Client.o: /usr/include/asm/socket.h /usr/include/cygwin/if.h
+Client.o: /usr/include/cygwin/sockios.h /usr/include/sys/uio.h
+Client.o: /usr/include/sys/time.h /usr/include/netinet/in.h
+Client.o: /usr/include/cygwin/in.h /usr/include/asm/byteorder.h
+Client.o: /usr/include/bits/endian.h /usr/include/cygwin/in6.h
+Client.o: /usr/include/arpa/inet.h /usr/include/unistd.h
+Client.o: /usr/include/sys/unistd.h
+Frame.o: Frame.h
+main.o: Client.h /usr/include/curses.h /usr/include/ncurses_dll.h
+main.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+main.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
+main.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
+main.o: /usr/include/sys/features.h /usr/include/sys/cdefs.h
+main.o: /usr/include/machine/_default_types.h /usr/include/sys/reent.h
+main.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+main.o: /usr/include/sys/lock.h /usr/include/sys/types.h
+main.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
+main.o: /usr/include/unctrl.h Position.h Sprite.h Frame.h
+Position.o: Position.h
+Sprite.o: Sprite.h Frame.h
+utility.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
+utility.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
+utility.o: /usr/include/sys/features.h /usr/include/sys/cdefs.h
+utility.o: /usr/include/machine/_default_types.h /usr/include/sys/reent.h
+utility.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+utility.o: /usr/include/sys/lock.h /usr/include/sys/types.h
+utility.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
+utility.o: /usr/include/time.h /usr/include/machine/time.h
+utility.o: /usr/include/string.h /usr/include/sys/string.h utility.h
+utility.o: Position.h
